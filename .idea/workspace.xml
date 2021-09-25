@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[add]First commit&#10;IntelliJ IDEA Community Editionにてプロジェクトの作成. その際に生成されたファイルの追加.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Display.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GameDisplay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GraphicsInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+    <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[add]オセロの内部処理の追加&#10;オセロの内部処理部分の実装, 追加">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Othello.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +61,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632582546179</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[add]画面表示の追加&#10;GUI画面の表示部分の追加.">
+      <created>1632583807445</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1632583807445</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[add]オセロの内部処理の追加&#10;オセロの内部処理部分の実装, 追加">
+      <created>1632584570616</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1632584570616</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -81,6 +91,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[add]First commit&#10;IntelliJ IDEA Community Editionにてプロジェクトの作成. その際に生成されたファイルの追加." />
-    <option name="LAST_COMMIT_MESSAGE" value="[add]First commit&#10;IntelliJ IDEA Community Editionにてプロジェクトの作成. その際に生成されたファイルの追加." />
+    <MESSAGE value="[add]画面表示の追加&#10;GUI画面の表示部分の追加." />
+    <MESSAGE value="[add]オセロの内部処理の追加&#10;オセロの内部処理部分の実装, 追加" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add]オセロの内部処理の追加&#10;オセロの内部処理部分の実装, 追加" />
   </component>
 </project>
