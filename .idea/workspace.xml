@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="JavaOthello:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[add]gitignoteの追加">
-      <change afterPath="$PROJECT_DIR$/src/main/java/BGM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Setting.java" afterDir="false" />
+    <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[add]BGMの実装&#10;BGMの実装, 音量設定の実装">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/JavaOthello_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GameLvelSelection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/SelectMode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Title.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Title.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GameDisplay$GameInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameDisplay$GameInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/GameDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Title.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Title.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +49,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="project.structure.last.edited" value="問題" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="アーティファクト" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
@@ -98,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632723976544</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="[add]BGMの実装&#10;BGMの実装, 音量設定の実装">
+      <created>1632724938255</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1632724938255</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +135,7 @@
     <MESSAGE value="[add]画面表示の追加&#10;GUI画面の表示部分の追加." />
     <MESSAGE value="[add]オセロの内部処理の追加&#10;オセロの内部処理部分の実装, 追加" />
     <MESSAGE value="[add]gitignoteの追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="[add]gitignoteの追加" />
+    <MESSAGE value="[add]BGMの実装&#10;BGMの実装, 音量設定の実装" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add]BGMの実装&#10;BGMの実装, 音量設定の実装" />
   </component>
 </project>

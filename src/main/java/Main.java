@@ -27,7 +27,7 @@ public class Main {
     Main(){
         this.mainWindow = new JFrame("AIオセロ");
         this.mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainWindow.setSize(1100,900);
+        this.mainWindow.setSize(800,650);
         this.mainWindow.setLocationRelativeTo(null);
         this.mainWindow.setVisible(true);
         this.mainWindow.setResizable(false);
