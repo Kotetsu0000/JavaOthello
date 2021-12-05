@@ -71,7 +71,7 @@ public class SelectMode extends Display{
     }
 
     void multiPlay(GraphicsInfo ginfo, int boxWidth, int boxHeight, float boxY){
-        //ひとりプレイ
+        //ふたりプレイ
         String str = "2 Player";
 
         //左上座標
@@ -103,7 +103,7 @@ public class SelectMode extends Display{
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             this.gameInfo.cpuPlayer = 0;
-            //goPlaygame();
+            gameInfo.goPlayGame();
         }
     }
 

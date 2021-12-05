@@ -25,7 +25,7 @@ public class GameLvelSelection extends Display {
     }
 
     void AILevel(GraphicsInfo ginfo) {
-        //MainGameDisplay.this.gameMode
+        //gameInfo.gameMode
         int fontSize = 50;
         Font mfont = new Font("Sanserif", Font.BOLD, fontSize);
         ginfo.g.setFont(mfont);
@@ -95,7 +95,7 @@ public class GameLvelSelection extends Display {
     }
 
     void AILookAheadNumber(GraphicsInfo ginfo) {
-        //MainGameDisplay.this.gameMode
+        //gameInfo.gameMode
         int fontSize = 50;
         Font mfont = new Font("Sanserif", Font.BOLD, fontSize);
         ginfo.g.setFont(mfont);
@@ -224,7 +224,6 @@ public class GameLvelSelection extends Display {
     }
 
     void gamePlay(GraphicsInfo ginfo){
-        //ひとりプレイ
         String str = "Game Start！";
         int fontSize = 70;
         Font mfont = new Font("Sanserif", Font.BOLD, fontSize);
@@ -256,7 +255,7 @@ public class GameLvelSelection extends Display {
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
-            //goPlaygame();
+            gameInfo.goPlayGame();
         }
     }
 }

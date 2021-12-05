@@ -10,18 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[add]画面の追加&#10;スクリーンサイズの調整, 画面レイアウトの変更, モード選択画面, CPUレベル等の選択画面の実装">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/JavaOthello_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GameLvelSelection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SelectMode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/AI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/PlayGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Title.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Title.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GameDisplay$GameInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameDisplay$GameInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GameDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameDisplay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Title.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Title.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameLvelSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameLvelSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SelectMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SelectMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/othello_model_var_9_06.h5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GameLvelSelection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameLvelSelection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SelectMode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SelectMode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/othello_model_var_9_06.h5" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
