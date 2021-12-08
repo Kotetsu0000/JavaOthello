@@ -9,17 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[add]画面の追加&#10;スクリーンサイズの調整, 画面レイアウトの変更, モード選択画面, CPUレベル等の選択画面の実装">
-      <change afterPath="$PROJECT_DIR$/src/main/java/AI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/PlayGame.java" afterDir="false" />
+    <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[add]二人対戦、簡易的なひとり対戦の実装(今後変更予定)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GameDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GameLvelSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GameLvelSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SelectMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SelectMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/othello_model_var_9_06.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GameLvelSelection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameLvelSelection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SelectMode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SelectMode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/othello_model_var_9_06.h5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PlayGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PlayGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GameDisplay$GameInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameDisplay$GameInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GameDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameDisplay.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637253113984</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="[add]二人対戦、簡易的なひとり対戦の実装(今後変更予定)">
+      <created>1638728388596</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1638728388596</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,6 +143,7 @@
     <MESSAGE value="[add]gitignoteの追加" />
     <MESSAGE value="[add]BGMの実装&#10;BGMの実装, 音量設定の実装" />
     <MESSAGE value="[add]画面の追加&#10;スクリーンサイズの調整, 画面レイアウトの変更, モード選択画面, CPUレベル等の選択画面の実装" />
-    <option name="LAST_COMMIT_MESSAGE" value="[add]画面の追加&#10;スクリーンサイズの調整, 画面レイアウトの変更, モード選択画面, CPUレベル等の選択画面の実装" />
+    <MESSAGE value="[add]二人対戦、簡易的なひとり対戦の実装(今後変更予定)" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add]二人対戦、簡易的なひとり対戦の実装(今後変更予定)" />
   </component>
 </project>

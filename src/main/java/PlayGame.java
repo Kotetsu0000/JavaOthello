@@ -24,7 +24,7 @@ public class PlayGame extends Display{
     public void show(GraphicsInfo ginfo) {
         //描画部分
         boardBase(ginfo);
-        auxiliaryCircle(ginfo);
+        if (gameInfo.cpuPlayer != gameInfo.othello.player){auxiliaryCircle(ginfo);}
         othelloPiece(ginfo);
         infomation(ginfo);
         exit(ginfo);
