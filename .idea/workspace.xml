@@ -9,14 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[change]推論のクラスを仮作成(動作はしない)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/AI.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GameDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameDisplay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GameLvelSelection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GameLvelSelection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SelectMode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SelectMode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/model_main_04_03.h5" beforeDir="false" />
-    </list>
+    <list default="true" id="1eb1886f-cde8-46c0-9cb1-33418e49dae4" name="デフォルト変更リスト" comment="[change]推論のクラスを仮作成(動作はしない)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
