@@ -13,9 +13,17 @@ public class GameLvelSelection extends Display {
     public void show(GraphicsInfo ginfo) {
         ginfo.g.setColor(new Color(230, 230, 230));
         ginfo.g.fill(new Rectangle2D.Double(50, 70, 700, 400));
-        AILevel(ginfo);
-        AILookAheadNumber(ginfo);
-        cpuPlayerSet(ginfo);
+        if(this.gameInfo.AIMode==1){
+            AILevel(ginfo);
+            AILookAheadNumber(ginfo);
+            cpuPlayerSet(ginfo);
+        }
+        else if(this.gameInfo.AIMode==2){
+
+        }
+        else if(this.gameInfo.AIMode==3){
+
+        }
         gamePlay(ginfo);
     }
 

@@ -2,16 +2,15 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 
-public class SelectMode extends Display{
+public class SelectAI extends Display{
     GameDisplay.GameInfo gameInfo;
-
-    SelectMode(GameDisplay.GameInfo gameInfo){
+    SelectAI(GameDisplay.GameInfo gameInfo){
         this.gameInfo = gameInfo;
     }
     @Override
     public void show(GraphicsInfo ginfo) {
-        //「モード選択」の文字
-        String str = "モード選択";
+        //「AI選択」の文字
+        String str = "AI選択";
         //左上座標
         float strX = 80;
         float strY = 130;
@@ -23,19 +22,20 @@ public class SelectMode extends Display{
         ginfo.g.setColor(Color.BLACK);
         ginfo.g.drawString(str, strX, strY);
 
-        singlePlay(ginfo,500, 100, 190);
-        multiPlay(ginfo, 500, 100, 320);
-        setting(ginfo, 500, 100, 450);
+        this.ValueMiniMax(ginfo,500, 100, 190);
+        this.ValueMCTS(ginfo, 500, 100, 320);
+        this.PolicyValueMCTS(ginfo, 500, 100, 450);
+
     }
 
     @Override
-    public void loadMedia() {
+    public void loadMedia() throws IOException {
 
     }
 
-    void singlePlay(GraphicsInfo ginfo, int boxWidth, int boxHeight, float boxY){
+    void ValueMiniMax(GraphicsInfo ginfo, int boxWidth, int boxHeight, float boxY){
         //ひとりプレイ
-        String str = "1 Player";
+        String str = "V-MiniMax";
 
         //左上座標
         float boxX;//計算で出すので代入はしない
@@ -65,15 +65,14 @@ public class SelectMode extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
-            //cpuPlayer = 1;
-            //this.gameInfo.goLevelSelection();
-            this.gameInfo.goSelectAI();
+            this.gameInfo.AIMode = 1;
+            this.gameInfo.goLevelSelection();
         }
     }
 
-    void multiPlay(GraphicsInfo ginfo, int boxWidth, int boxHeight, float boxY){
-        //ふたりプレイ
-        String str = "2 Player";
+    void ValueMCTS(GraphicsInfo ginfo, int boxWidth, int boxHeight, float boxY){
+        //ひとりプレイ
+        String str = "V-MCTS";
 
         //左上座標
         float boxX;//計算で出すので代入はしない
@@ -103,14 +102,14 @@ public class SelectMode extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
-            this.gameInfo.cpuPlayer = 0;
-            gameInfo.goPlayGame();
+            this.gameInfo.AIMode = 2;
+            this.gameInfo.goLevelSelection();
         }
     }
 
-    void setting(GraphicsInfo ginfo, int boxWidth, int boxHeight, float boxY){
-        //設定画面
-        String str = "Setting";
+    void PolicyValueMCTS(GraphicsInfo ginfo, int boxWidth, int boxHeight, float boxY){
+        //ひとりプレイ
+        String str = "PV-MCTS";
 
         //左上座標
         float boxX;//計算で出すので代入はしない
@@ -140,7 +139,9 @@ public class SelectMode extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
-            this.gameInfo.goSetting();
+            this.gameInfo.AIMode = 3;
+            this.gameInfo.goLevelSelection();
         }
     }
+
 }

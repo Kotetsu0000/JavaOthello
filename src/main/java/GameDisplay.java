@@ -6,7 +6,7 @@ import java.io.IOException;
 public class GameDisplay extends Display{
 
     GameInfo gameInfo;
-    Display title, setting, selectMode, levelSelection, playGame;
+    Display title, setting, selectAI, selectMode, levelSelection, playGame;
     BGM bgm;
 
     String titleBGM = "bgm\\yume.wav";
@@ -14,6 +14,7 @@ public class GameDisplay extends Display{
     String selectModeBGM = "bgm\\houkagonoyuzora.wav";
     String levelSelectionBGM = "bgm\\houkagonoyuzora.wav";
     String playGameBGM = "bgm\\houkagonoyuzora.wav";
+    String selectAIBGM = "bgm\\houkagonoyuzora.wav";
 
     GameDisplay(){
         this.gameInfo = new GameInfo();
@@ -24,6 +25,7 @@ public class GameDisplay extends Display{
 
         this.title = new Title(this.gameInfo);
         this.setting = new Setting(this.gameInfo);
+        this.selectAI = new SelectAI(this.gameInfo);
         this.selectMode = new SelectMode(this.gameInfo);
         this.levelSelection = new GameLvelSelection(this.gameInfo);
         this.playGame = new PlayGame(this.gameInfo);
@@ -42,11 +44,12 @@ public class GameDisplay extends Display{
 
     class GameInfo{
         public Othello othello;
-        float bgmVolume = 3;
+        float bgmVolume = 0;
+        int AIMode = 1;//AIの種類の選択. 1:ValueMiniMax, 2:ValueMCTS, 3:PolicyValueMCTS
         int gameMode = 1;//強さの選択
         int AILookAhead = 3;//AIの予測手数
         AI cpu;
-        int cpuPlayer = 1;//CPUの手番. 1:先手, 2:後手
+        int cpuPlayer = 2;//CPUの手番. 1:先手, 2:後手
         double[] predDisplay;
         GameInfo(){
             othello = new Othello();
@@ -55,7 +58,7 @@ public class GameDisplay extends Display{
                 cpu.start();
                 System.out.println("CPU Start !!");
                 cpu.othello = othello;
-                predDisplay = cpu.predict(othello.board);
+                predDisplay = cpu.boardPred.predict(othello.board);
             } catch (IOException | InvalidKerasConfigurationException | UnsupportedKerasConfigurationException e) {
                 System.err.println(e.getMessage());
             }
@@ -70,6 +73,11 @@ public class GameDisplay extends Display{
             bgm.clip.close();
             bgm.changeBGM(settingBGM);
             goScene(setting);
+        }
+        void goSelectAI(){
+            bgm.clip.close();
+            bgm.changeBGM(selectAIBGM);
+            goScene(selectAI);
         }
         void goSelectMode(){
             bgm.clip.close();

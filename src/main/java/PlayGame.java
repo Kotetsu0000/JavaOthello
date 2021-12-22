@@ -13,6 +13,7 @@ public class PlayGame extends Display{
     int boardY = 55;
     boolean placeFlag = false;
     long placeFlagTime;
+    double startTime;
 
     //情報枠サイズ
     int infoWidth = 190;
@@ -113,6 +114,23 @@ public class PlayGame extends Display{
         Rectangle2D.Double block = new Rectangle2D.Double(boardSize + boardX + 10, boardY, infoWidth,120);
         ginfo.g.fill(block);
 
+        ginfo.g.setFont(new Font("Sanserif", Font.BOLD, 20));
+        FontMetrics fm = ginfo.g.getFontMetrics();
+        float strh = fm.getHeight();
+        ginfo.g.setColor(Color.BLACK);
+
+        String str = "現在のAIの評価(%)";
+        ginfo.g.drawString(str, boardSize + boardX + 15, boardY + strh);
+
+        str = "黒 : " + String.format("%.1f", gameInfo.predDisplay[0] * 100) + "%";
+        ginfo.g.drawString(str, boardSize + boardX + 15, boardY + strh * 2);
+
+        str = "白 : " + String.format("%.1f", gameInfo.predDisplay[1] * 100) + "%";
+        ginfo.g.drawString(str, boardSize + boardX + 15, boardY + strh * 3);
+
+        str = "引き分け : " + String.format("%.1f", gameInfo.predDisplay[2] * 100) + "%";
+        ginfo.g.drawString(str, boardSize + boardX + 15, boardY + strh * 4);
+
         //情報表示用の枠2
         ginfo.g.setColor(Color.WHITE);
         block = new Rectangle2D.Double(boardSize + boardX + 10, boardY + 130, infoWidth,60);
@@ -188,6 +206,8 @@ public class PlayGame extends Display{
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             gameInfo.othello.reset();
+            gameInfo.cpu.predStart = false;
+            gameInfo.predDisplay = gameInfo.cpu.boardPred.predict(gameInfo.othello.board);//盤面評価リセット
             gameInfo.cpuPlayer = 2;//CPUの手番. 1:先手, 2:後手
             gameInfo.AILookAhead = 3;//AIの予測手数
             gameInfo.gameMode = 1;//強さの選択
@@ -219,20 +239,13 @@ public class PlayGame extends Display{
             if (placeLen.length != 0){//置ける場合
                 //AI
                 if (gameInfo.cpuPlayer == gameInfo.othello.player){
-                    String str = "AI思考中";
-                    ginfo.g.setFont(new Font("Sanserif", Font.BOLD, 20));
-                    FontMetrics fm = ginfo.g.getFontMetrics();
-                    float strh = fm.getHeight();
-                    ginfo.g.setColor(Color.BLACK);
-                    ginfo.g.drawString(str, boardSize + boardX + 15, boardY+130+strh);
-
-                    //ginfo.g.drawString("探索盤面数 : "+String.valueOf(gameInfo.cpu.thinkNumber),boardSize + boardX + 15, boardY+130+strh*2);
-
                     if (gameInfo.cpu.thinkFlag){
+                        this.startTime = System.currentTimeMillis();
                         gameInfo.cpu.thinkFlag=false;
                         gameInfo.cpu.predBoard = gameInfo.othello.board;
                         gameInfo.cpu.predPlayer = gameInfo.othello.player;
                         gameInfo.cpu.predNumber = gameInfo.AILookAhead;
+                        gameInfo.cpu.predAIMode = gameInfo.AIMode;
                         gameInfo.cpu.predMode = gameInfo.gameMode;
                         gameInfo.cpu.thinkNumber=0;
                         gameInfo.cpu.predStart = true;
@@ -243,10 +256,18 @@ public class PlayGame extends Display{
                         gameInfo.othello.passFlag = 0;
                         gameInfo.othello.player %= 2;
                         gameInfo.othello.player += 1;
-                        gameInfo.predDisplay = gameInfo.cpu.predict(gameInfo.othello.board);
+                        gameInfo.predDisplay = gameInfo.cpu.boardPred.predict(gameInfo.othello.board);
                         gameInfo.cpu.AIPlace = null;
                         gameInfo.cpu.thinkFlag=true;
                     }
+                    String str = "AI思考中";
+                    ginfo.g.setFont(new Font("Sanserif", Font.BOLD, 20));
+                    FontMetrics fm = ginfo.g.getFontMetrics();
+                    float strh = fm.getHeight();
+                    ginfo.g.setColor(Color.BLACK);
+                    ginfo.g.drawString(str, boardSize + boardX + 15, boardY+130+strh);
+
+                    ginfo.g.drawString("探索時間 : "+String.format("%.1f",(System.currentTimeMillis() - this.startTime)/1000)+"[s]",boardSize + boardX + 15, boardY+130+strh*2);
                 }
                 //Player VS Player
                 else if(gameInfo.cpuPlayer == 0){
@@ -276,7 +297,7 @@ public class PlayGame extends Display{
                             gameInfo.othello.passFlag = 0;
                             gameInfo.othello.player %= 2;
                             gameInfo.othello.player += 1;
-                            gameInfo.predDisplay = gameInfo.cpu.predict(gameInfo.othello.board);
+                            gameInfo.predDisplay = gameInfo.cpu.boardPred.predict(gameInfo.othello.board);
                             placeFlag = false;
                         }
                         //クリックした場所が置けない場合
@@ -301,7 +322,7 @@ public class PlayGame extends Display{
                             gameInfo.othello.passFlag = 0;
                             gameInfo.othello.player %= 2;
                             gameInfo.othello.player += 1;
-                            gameInfo.predDisplay = gameInfo.cpu.predict(gameInfo.othello.board);
+                            gameInfo.predDisplay = gameInfo.cpu.boardPred.predict(gameInfo.othello.board);
                             placeFlag = false;
                         }
                         //クリックした場所が置けない場合
