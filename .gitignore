@@ -1,5 +1,4 @@
 out/
 target/
 target/classes/*.class
-.idea/**/workspace.xml
-.idea/**/tasks.xml
+.idea/
