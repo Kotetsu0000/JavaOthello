@@ -19,12 +19,17 @@ public class GameLvelSelection extends Display {
             cpuPlayerSet(ginfo);
         }
         else if(this.gameInfo.AIMode==2){
-
+            AITime(ginfo);
+            AILookAheadNumber(ginfo);
+            cpuPlayerSet(ginfo);
         }
         else if(this.gameInfo.AIMode==3){
-
+            AITime(ginfo);
+            AILookAheadNumber(ginfo);
+            cpuPlayerSet(ginfo);
         }
         gamePlay(ginfo);
+        gameInfo.cpu.AIPlace = null;
     }
 
     @Override
@@ -266,5 +271,85 @@ public class GameLvelSelection extends Display {
             gameInfo.goPlayGame();
         }
     }
+
+    void AITime(GraphicsInfo ginfo) {
+        //gameInfo.gameMode
+        int fontSize = 50;
+        Font mfont = new Font("Sanserif", Font.BOLD, fontSize);
+        ginfo.g.setFont(mfont);
+        FontMetrics fm = ginfo.g.getFontMetrics();
+
+        String down = "◀";
+        String up = "▶";
+
+        int boxWidth = 50;
+        int boxHeight = 50;
+
+        float boxXDown = 400;
+        float boxXUp = boxXDown + 250;
+        float boxY = 110;
+        float strX = 100;
+
+        //UPボタン
+        float strw = fm.stringWidth(up) / 2;
+        float strh = fm.getHeight();
+        if (ginfo.cursorX > boxXUp & ginfo.cursorX < boxXUp + boxWidth & ginfo.cursorY > boxY & ginfo.cursorY < boxY + boxHeight) {
+            ginfo.g.setColor(Color.YELLOW);
+        } else {
+            ginfo.g.setColor(Color.WHITE);
+        }
+        ginfo.g.fill(new Rectangle2D.Double(boxXUp, boxY, boxWidth, boxHeight));
+        ginfo.g.setColor(Color.BLACK);
+        //ginfo.g.draw(new Rectangle2D.Double(boxXUp,boxY, boxWidth,boxHeight));
+        ginfo.g.drawString(up, boxXUp + boxWidth / 2 - strw, boxY + boxHeight / 2 + strh / 4);
+        if (ginfo.clickX > boxXUp & ginfo.clickX < boxXUp + boxWidth & ginfo.clickY > boxY & ginfo.clickY < boxY + boxHeight) {
+            ginfo.clickX = -100;
+            ginfo.clickY = -100;
+            if (this.gameInfo.timeMode < 3) {
+                this.gameInfo.timeMode++;
+            }
+        }
+
+        //Downボタン
+        strw = fm.stringWidth(down) / 2;
+        strh = fm.getHeight();
+        if (ginfo.cursorX > boxXDown & ginfo.cursorX < boxXDown + boxWidth & ginfo.cursorY > boxY & ginfo.cursorY < boxY + boxHeight) {
+            ginfo.g.setColor(Color.YELLOW);
+        } else {
+            ginfo.g.setColor(Color.WHITE);
+        }
+        ginfo.g.fill(new Rectangle2D.Double(boxXDown, boxY, boxWidth, boxHeight));
+        ginfo.g.setColor(Color.BLACK);
+        ginfo.g.drawString(down, boxXDown + boxWidth / 2 - strw, boxY + boxHeight / 2 + strh / 4);
+        if (ginfo.clickX > boxXDown & ginfo.clickX < boxXDown + boxWidth & ginfo.clickY > boxY & ginfo.clickY < boxY + boxHeight) {
+            ginfo.clickX = -100;
+            ginfo.clickY = -100;
+            if (this.gameInfo.timeMode > 0) {
+                this.gameInfo.timeMode--;
+            }
+        }
+
+        if (this.gameInfo.timeMode == 0) {
+            gameInfo.cpu.maxTime = 10 * 1000;
+            strw = fm.stringWidth("10 [s]") / 2;
+            ginfo.g.drawString("10 [s]", (boxXUp + boxXDown + boxWidth) / 2 - strw, boxY + boxHeight / 2 + strh / 4);
+        } else if (this.gameInfo.timeMode == 1) {
+            gameInfo.cpu.maxTime = 20 * 1000;
+            strw = fm.stringWidth("20 [s]") / 2;
+            ginfo.g.drawString("20 [s]", (boxXUp + boxXDown + boxWidth) / 2 - strw, boxY + boxHeight / 2 + strh / 4);
+        } else if (this.gameInfo.timeMode == 2) {
+            gameInfo.cpu.maxTime = 30 * 1000;
+            strw = fm.stringWidth("30 [s]") / 2;
+            ginfo.g.drawString("30 [s]", (boxXUp + boxXDown + boxWidth) / 2 - strw, boxY + boxHeight / 2 + strh / 4);
+        }
+        else if (this.gameInfo.timeMode == 3) {
+            gameInfo.cpu.maxTime = 60 * 1000;
+            strw = fm.stringWidth("60 [s]") / 2;
+            ginfo.g.drawString("60 [s]", (boxXUp + boxXDown + boxWidth) / 2 - strw, boxY + boxHeight / 2 + strh / 4);
+        }
+
+        ginfo.g.drawString("思考時間 : ", strX, boxY + boxHeight / 2 + strh / 4);
+    }
+
 }
     //this.gameInfo

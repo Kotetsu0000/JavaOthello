@@ -207,10 +207,13 @@ public class PlayGame extends Display{
             ginfo.clickY = -100;
             gameInfo.othello.reset();
             gameInfo.cpu.predStart = false;
+            gameInfo.cpu.thinkFlag = true;
+            gameInfo.cpu.AIPlace = null;
             gameInfo.predDisplay = gameInfo.cpu.boardPred.predict(gameInfo.othello.board);//盤面評価リセット
             gameInfo.cpuPlayer = 2;//CPUの手番. 1:先手, 2:後手
             gameInfo.AILookAhead = 3;//AIの予測手数
             gameInfo.gameMode = 1;//強さの選択
+            this.gameInfo.timeMode = 0;//AIの探索時間モード選択用
             gameInfo.goSelectMode();
         }
     }
@@ -251,8 +254,8 @@ public class PlayGame extends Display{
                         gameInfo.cpu.predStart = true;
                     }
                     else if(gameInfo.cpu.AIPlace!=null){
-                        System.out.println("0:"+gameInfo.cpu.AIPlace[0]+", 1:"+gameInfo.cpu.AIPlace[1]+", 2:"+gameInfo.cpu.AIPlace[2]+", 3:"+gameInfo.cpu.AIPlace[3]+", 4:"+gameInfo.cpu.AIPlace[4]);
-                        gameInfo.othello.board = gameInfo.othello.put(gameInfo.othello.board, new int[]{(int)gameInfo.cpu.AIPlace[0], (int)gameInfo.cpu.AIPlace[1]}, gameInfo.othello.player);
+                        System.out.println("0:"+gameInfo.cpu.AIPlace[0]+", 1:"+gameInfo.cpu.AIPlace[1]);
+                        gameInfo.othello.board = gameInfo.othello.put(gameInfo.othello.board, new int[]{gameInfo.cpu.AIPlace[0], gameInfo.cpu.AIPlace[1]}, gameInfo.othello.player);
                         gameInfo.othello.passFlag = 0;
                         gameInfo.othello.player %= 2;
                         gameInfo.othello.player += 1;

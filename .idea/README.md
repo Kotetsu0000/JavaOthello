@@ -1,2 +1,0 @@
-# JavaOthello
-JavaのGUIオセロ

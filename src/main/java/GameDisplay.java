@@ -45,9 +45,11 @@ public class GameDisplay extends Display{
     class GameInfo{
         public Othello othello;
         float bgmVolume = 0;
+        float seVolume = 0;
         int AIMode = 1;//AIの種類の選択. 1:ValueMiniMax, 2:ValueMCTS, 3:PolicyValueMCTS
         int gameMode = 1;//強さの選択
         int AILookAhead = 3;//AIの予測手数
+        int timeMode = 0;//AIの探索時間モード選択用 0:10[s], 1:20[s], 2:30[s], 3:60[s]
         AI cpu;
         int cpuPlayer = 2;//CPUの手番. 1:先手, 2:後手
         double[] predDisplay;
