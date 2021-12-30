@@ -29,6 +29,21 @@ public class Title extends Display{
             this.gameInfo.goSelectMode();
         }
 
+        //「AI選択」の文字
+        String str = "Click to Start !!";
+        //左上座標
+        float strY = 600;
+
+        int fontSize = 40;
+        Font mfont = new Font("Sanserif", Font.BOLD, fontSize);
+        ginfo.g.setFont(mfont);
+        FontMetrics fm = ginfo.g.getFontMetrics();
+        float strw = fm.stringWidth(str)/2;
+
+        //ginfo.g.setColor(Color.BLACK);
+        ginfo.g.setColor(new Color(0,0,0, (int) (255/2*(1+Math.sin(System.currentTimeMillis()/250)))));
+        ginfo.g.drawString(str, ginfo.windowWidth/2-strw, strY);
+
     }
 
     @Override
