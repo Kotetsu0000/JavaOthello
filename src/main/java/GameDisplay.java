@@ -8,6 +8,7 @@ public class GameDisplay extends Display{
     GameInfo gameInfo;
     Display title, setting, selectAI, selectMode, levelSelection, playGame;
     BGM bgm;
+    SE se;
 
     String titleBGM = "bgm\\yume.wav";
     String settingBGM = "bgm\\houkagonoyuzora.wav";
@@ -16,12 +17,16 @@ public class GameDisplay extends Display{
     String playGameBGM = "bgm\\houkagonoyuzora.wav";
     String selectAIBGM = "bgm\\houkagonoyuzora.wav";
 
+    String click = "se\\click.wav";
+
     GameDisplay(){
         this.gameInfo = new GameInfo();
 
         this.bgm = new BGM(gameInfo);
         this.bgm.changeBGM(titleBGM);
         this.bgm.start();
+
+        this.se = new SE(gameInfo);
 
         this.title = new Title(this.gameInfo);
         this.setting = new Setting(this.gameInfo);
@@ -45,7 +50,7 @@ public class GameDisplay extends Display{
     class GameInfo{
         public Othello othello;
         float bgmVolume = 0;
-        float seVolume = 0;
+        float seVolume = 10;
         int AIMode = 1;//AIの種類の選択. 1:ValueMiniMax, 2:ValueMCTS, 3:PolicyValueMCTS
         int gameMode = 1;//強さの選択
         int AILookAhead = 3;//AIの予測手数
@@ -65,6 +70,13 @@ public class GameDisplay extends Display{
                 System.err.println(e.getMessage());
             }
         }
+        void playSE(String filePath){
+            se.playSE(filePath);
+        }
+        void click(){
+            se.playSE(click);
+        }
+
         void goScene(Display Scene){GameDisplay.current = Scene;}
         void goTitle(){
             bgm.clip.close();

@@ -71,6 +71,7 @@ public class GameLvelSelection extends Display {
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             if (this.gameInfo.gameMode < 2) {
+                this.gameInfo.click();
                 this.gameInfo.gameMode++;
             }
         }
@@ -90,6 +91,7 @@ public class GameLvelSelection extends Display {
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             if (this.gameInfo.gameMode > 0) {
+                this.gameInfo.click();
                 this.gameInfo.gameMode--;
             }
         }
@@ -141,6 +143,7 @@ public class GameLvelSelection extends Display {
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             if (this.gameInfo.AILookAhead < 5) {
+                this.gameInfo.click();
                 this.gameInfo.AILookAhead++;
             }
         }
@@ -160,6 +163,7 @@ public class GameLvelSelection extends Display {
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             if (this.gameInfo.AILookAhead > 1) {
+                this.gameInfo.click();
                 this.gameInfo.AILookAhead--;
             }
         }
@@ -203,6 +207,7 @@ public class GameLvelSelection extends Display {
         if (ginfo.clickX>boxXUp&ginfo.clickX<boxXUp+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
+            this.gameInfo.click();
             this.gameInfo.cpuPlayer = this.gameInfo.cpuPlayer%2+1;
         }
 
@@ -221,6 +226,7 @@ public class GameLvelSelection extends Display {
         if (ginfo.clickX>boxXDown&ginfo.clickX<boxXDown+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
+            this.gameInfo.click();
             this.gameInfo.cpuPlayer = this.gameInfo.cpuPlayer%2+1;
         }
 
@@ -268,6 +274,7 @@ public class GameLvelSelection extends Display {
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
+            this.gameInfo.click();
             gameInfo.goPlayGame();
         }
     }
@@ -306,6 +313,7 @@ public class GameLvelSelection extends Display {
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             if (this.gameInfo.timeMode < 3) {
+                this.gameInfo.click();
                 this.gameInfo.timeMode++;
             }
         }
@@ -325,6 +333,7 @@ public class GameLvelSelection extends Display {
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             if (this.gameInfo.timeMode > 0) {
+                this.gameInfo.click();
                 this.gameInfo.timeMode--;
             }
         }

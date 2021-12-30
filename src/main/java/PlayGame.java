@@ -169,6 +169,7 @@ public class PlayGame extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
+            this.gameInfo.click();
             gameInfo.othello.reset();
         }
     }
@@ -214,6 +215,7 @@ public class PlayGame extends Display{
             gameInfo.AILookAhead = 3;//AIの予測手数
             gameInfo.gameMode = 1;//強さの選択
             this.gameInfo.timeMode = 0;//AIの探索時間モード選択用
+            this.gameInfo.click();
             gameInfo.goSelectMode();
         }
     }

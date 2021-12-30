@@ -65,6 +65,7 @@ public class SelectMode extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
+            this.gameInfo.click();
             //cpuPlayer = 1;
             //this.gameInfo.goLevelSelection();
             this.gameInfo.goSelectAI();
@@ -103,6 +104,7 @@ public class SelectMode extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
+            this.gameInfo.click();
             this.gameInfo.cpuPlayer = 0;
             gameInfo.goPlayGame();
         }
@@ -140,6 +142,7 @@ public class SelectMode extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
+            this.gameInfo.click();
             this.gameInfo.goSetting();
         }
     }

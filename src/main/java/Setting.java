@@ -56,6 +56,7 @@ public class Setting extends Display{
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             if (this.gameInfo.bgmVolume<10){
+                this.gameInfo.click();
                 this.gameInfo.bgmVolume++;
             }
         }
@@ -76,6 +77,7 @@ public class Setting extends Display{
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             if (this.gameInfo.bgmVolume>0){
+                this.gameInfo.click();
                 this.gameInfo.bgmVolume--;
             }
         }
@@ -120,6 +122,7 @@ public class Setting extends Display{
             ginfo.clickY = -100;
             if (this.gameInfo.seVolume<10){
                 this.gameInfo.seVolume++;
+                this.gameInfo.click();
             }
         }
 
@@ -140,6 +143,7 @@ public class Setting extends Display{
             ginfo.clickY = -100;
             if (this.gameInfo.seVolume>0){
                 this.gameInfo.seVolume--;
+                this.gameInfo.click();
             }
         }
 
@@ -181,6 +185,7 @@ public class Setting extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
+            this.gameInfo.click();
             this.gameInfo.goSelectMode();
         }
     }
