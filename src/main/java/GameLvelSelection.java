@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.io.IOException;
 
 public class GameLvelSelection extends Display {
     GameDisplay.GameInfo gameInfo;

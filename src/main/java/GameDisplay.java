@@ -1,6 +1,5 @@
 import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfigurationException;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 

@@ -8,7 +8,6 @@ import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.factory.Nd4j;
 
 import java.io.IOException;
-import java.security.Policy;
 import java.util.Arrays;
 
 public class AI extends Thread{

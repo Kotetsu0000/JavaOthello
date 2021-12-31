@@ -3,12 +3,10 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import javax.swing.*;
 import java.awt.image.BufferStrategy;
-import java.io.File;
 import java.io.IOException;
-import java.util.TimerTask;
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
 
