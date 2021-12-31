@@ -275,7 +275,7 @@ public class GameLvelSelection extends Display {
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             this.gameInfo.click();
-            gameInfo.goPlayGame();
+            gameInfo.goPlayGame(true);
         }
     }
 

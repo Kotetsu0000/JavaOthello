@@ -67,7 +67,7 @@ public class SelectAI extends Display{
             ginfo.clickY = -100;
             this.gameInfo.AIMode = 1;
             this.gameInfo.click();
-            this.gameInfo.goLevelSelection();
+            this.gameInfo.goLevelSelection(false);
         }
     }
 
@@ -105,7 +105,7 @@ public class SelectAI extends Display{
             ginfo.clickY = -100;
             this.gameInfo.AIMode = 2;
             this.gameInfo.click();
-            this.gameInfo.goLevelSelection();
+            this.gameInfo.goLevelSelection(false);
         }
     }
 
@@ -143,7 +143,7 @@ public class SelectAI extends Display{
             ginfo.clickY = -100;
             this.gameInfo.AIMode = 3;
             this.gameInfo.click();
-            this.gameInfo.goLevelSelection();
+            this.gameInfo.goLevelSelection(false);
         }
     }
 

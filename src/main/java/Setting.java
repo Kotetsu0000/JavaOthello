@@ -190,7 +190,7 @@ public class Setting extends Display{
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             this.gameInfo.click();
-            this.gameInfo.goSelectMode(true);
+            this.gameInfo.goSelectMode(false);
         }
     }
 

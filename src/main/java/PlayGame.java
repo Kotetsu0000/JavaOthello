@@ -216,7 +216,7 @@ public class PlayGame extends Display{
             gameInfo.gameMode = 1;//強さの選択
             this.gameInfo.timeMode = 0;//AIの探索時間モード選択用
             this.gameInfo.click();
-            gameInfo.goSelectMode();
+            gameInfo.goSelectMode(true);
         }
     }
 

@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.io.IOException;
 
 public class SelectMode extends Display{
     GameDisplay.GameInfo gameInfo;
@@ -68,7 +67,7 @@ public class SelectMode extends Display{
             this.gameInfo.click();
             //cpuPlayer = 1;
             //this.gameInfo.goLevelSelection();
-            this.gameInfo.goSelectAI();
+            this.gameInfo.goSelectAI(false);
         }
     }
 
@@ -106,7 +105,7 @@ public class SelectMode extends Display{
             ginfo.clickY = -100;
             this.gameInfo.click();
             this.gameInfo.cpuPlayer = 0;
-            gameInfo.goPlayGame();
+            gameInfo.goPlayGame(true);
         }
     }
 
@@ -143,7 +142,7 @@ public class SelectMode extends Display{
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             this.gameInfo.click();
-            this.gameInfo.goSetting();
+            this.gameInfo.goSetting(false);
         }
     }
 }

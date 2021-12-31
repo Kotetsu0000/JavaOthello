@@ -26,7 +26,7 @@ public class Title extends Display{
         if(ginfo.clickX != -100 && ginfo.clickY != -100){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
-            this.gameInfo.goSelectMode();
+            this.gameInfo.goSelectMode(true);
         }
 
         //「AI選択」の文字
