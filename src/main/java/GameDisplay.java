@@ -1,5 +1,6 @@
 import org.deeplearning4j.nn.modelimport.keras.exceptions.InvalidKerasConfigurationException;
 import org.deeplearning4j.nn.modelimport.keras.exceptions.UnsupportedKerasConfigurationException;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
@@ -49,8 +50,9 @@ public class GameDisplay extends Display{
 
     class GameInfo{
         public Othello othello;
-        float bgmVolume = 0;
-        float seVolume = 10;
+        LoadJson config;
+        float bgmVolume = 5;
+        float seVolume = 5;
         int AIMode = 1;//AIの種類の選択. 1:ValueMiniMax, 2:ValueMCTS, 3:PolicyValueMCTS
         int gameMode = 1;//強さの選択
         int AILookAhead = 3;//AIの予測手数
@@ -66,6 +68,10 @@ public class GameDisplay extends Display{
                 System.out.println("CPU Start !!");
                 cpu.othello = othello;
                 predDisplay = cpu.boardPred.predict(othello.board);
+
+                this.config = new LoadJson();
+                this.bgmVolume = this.config.BGM;
+                this.seVolume = this.config.SE;
             } catch (IOException | InvalidKerasConfigurationException | UnsupportedKerasConfigurationException e) {
                 System.err.println(e.getMessage());
             }
@@ -78,34 +84,46 @@ public class GameDisplay extends Display{
         }
 
         void goScene(Display Scene){GameDisplay.current = Scene;}
-        void goTitle(){
-            bgm.clip.close();
-            bgm.changeBGM(titleBGM);
+        void goTitle(boolean changeBGM){
+            if (changeBGM){
+                bgm.clip.close();
+                bgm.changeBGM(titleBGM);
+            }
             goScene(title);
         }
-        void goSetting(){
-            bgm.clip.close();
-            bgm.changeBGM(settingBGM);
+        void goSetting(boolean changeBGM){
+            if (changeBGM){
+                bgm.clip.close();
+                bgm.changeBGM(settingBGM);
+            }
             goScene(setting);
         }
-        void goSelectAI(){
-            bgm.clip.close();
-            bgm.changeBGM(selectAIBGM);
+        void goSelectAI(boolean changeBGM){
+            if (changeBGM){
+                bgm.clip.close();
+                bgm.changeBGM(selectAIBGM);
+            }
             goScene(selectAI);
         }
-        void goSelectMode(){
-            bgm.clip.close();
-            bgm.changeBGM(selectModeBGM);
+        void goSelectMode(boolean changeBGM){
+            if (changeBGM){
+                bgm.clip.close();
+                bgm.changeBGM(selectModeBGM);
+            }
             goScene(selectMode);
         }
-        void goLevelSelection(){
-            bgm.clip.close();
-            bgm.changeBGM(levelSelectionBGM);
+        void goLevelSelection(boolean changeBGM){
+            if (changeBGM){
+                bgm.clip.close();
+                bgm.changeBGM(levelSelectionBGM);
+            }
             goScene(levelSelection);
         }
-        void goPlayGame(){
-            bgm.clip.close();
-            bgm.changeBGM(playGameBGM);
+        void goPlayGame(boolean changeBGM){
+            if (changeBGM){
+                bgm.clip.close();
+                bgm.changeBGM(playGameBGM);
+            }
             goScene(playGame);
         }
 

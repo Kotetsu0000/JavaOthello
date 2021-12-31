@@ -58,6 +58,7 @@ public class Setting extends Display{
             if (this.gameInfo.bgmVolume<10){
                 this.gameInfo.click();
                 this.gameInfo.bgmVolume++;
+                this.gameInfo.config.writeJson(this.gameInfo.bgmVolume,this.gameInfo.seVolume);
             }
         }
 
@@ -79,6 +80,7 @@ public class Setting extends Display{
             if (this.gameInfo.bgmVolume>0){
                 this.gameInfo.click();
                 this.gameInfo.bgmVolume--;
+                this.gameInfo.config.writeJson(this.gameInfo.bgmVolume,this.gameInfo.seVolume);
             }
         }
 
@@ -123,6 +125,7 @@ public class Setting extends Display{
             if (this.gameInfo.seVolume<10){
                 this.gameInfo.seVolume++;
                 this.gameInfo.click();
+                this.gameInfo.config.writeJson(this.gameInfo.bgmVolume,this.gameInfo.seVolume);
             }
         }
 
@@ -144,6 +147,7 @@ public class Setting extends Display{
             if (this.gameInfo.seVolume>0){
                 this.gameInfo.seVolume--;
                 this.gameInfo.click();
+                this.gameInfo.config.writeJson(this.gameInfo.bgmVolume,this.gameInfo.seVolume);
             }
         }
 
@@ -186,7 +190,7 @@ public class Setting extends Display{
             ginfo.clickX = -100;
             ginfo.clickY = -100;
             this.gameInfo.click();
-            this.gameInfo.goSelectMode();
+            this.gameInfo.goSelectMode(true);
         }
     }
 
@@ -213,7 +217,7 @@ public class Setting extends Display{
         if (ginfo.clickX>boxX&ginfo.clickX<boxX+boxWidth&ginfo.clickY>boxY&ginfo.clickY<boxY+boxHeight){
             ginfo.clickX = -100;
             ginfo.clickY = -100;
-            this.gameInfo.goTitle();
+            //this.gameInfo.goTitle();
         }
     }
 }
