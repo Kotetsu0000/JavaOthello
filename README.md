@@ -9,25 +9,25 @@ Also, it is created by reinforcement learning through self-competition.
 
 ## Demo
 
-###Title
+### Title
 
 ![Title](./image/image01.png)
 
-###Mode Select
+### Mode Select
 
 ![Title](./image/image02.png)
 
-###AI Select
+### AI Select
 
 ![Title](./image/image03.png)
 
-###Advanced Setting
+### Advanced Setting
 
 ![Title](./image/image04.png)
 
 ![Title](./image/image05.png)
 
-###Play Game
+### Play Game
 
 ![Title](./image/image06.png)
 
