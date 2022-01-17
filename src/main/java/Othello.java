@@ -196,4 +196,9 @@ public class Othello {
         }
         return new int[]{black,white};
     }
+
+    boolean endDecision(double[][] board){
+        return putPlace(board, 1).length == 0 && putPlace(board, 2).length == 0;
+    }
+
 }

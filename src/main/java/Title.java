@@ -10,6 +10,8 @@ public class Title extends Display{
     GameDisplay.GameInfo gameInfo;
     private BufferedImage imgTitle =null;
     private BufferedImage imgIcon =null;
+    double brightness = 0;
+    double upBrightness = 6;
 
     Title(GameDisplay.GameInfo gameInfo){
         this.gameInfo = gameInfo;
@@ -40,8 +42,11 @@ public class Title extends Display{
         FontMetrics fm = ginfo.g.getFontMetrics();
         float strw = fm.stringWidth(str)/2;
 
-        //ginfo.g.setColor(Color.BLACK);
-        ginfo.g.setColor(new Color(0,0,0, (int) (255/2*(1+Math.sin(System.currentTimeMillis()/250)))));
+        if (this.brightness+this.upBrightness<0 || 255<this.brightness+this.upBrightness){
+            this.upBrightness = - this.upBrightness;
+        }
+        this.brightness += this.upBrightness;
+        ginfo.g.setColor(new Color(0,0,0, (int) this.brightness));
         ginfo.g.drawString(str, ginfo.windowWidth/2-strw, strY);
 
     }

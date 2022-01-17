@@ -23,7 +23,7 @@ public class Main {
 
     //インスタンス
     Main(){
-        this.mainWindow = new JFrame("AIオセロ");
+        this.mainWindow = new JFrame("JavaOthello");
         this.mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainWindow.setSize(800,650);
         this.mainWindow.setLocationRelativeTo(null);

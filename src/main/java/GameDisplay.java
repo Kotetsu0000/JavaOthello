@@ -10,14 +10,15 @@ public class GameDisplay extends Display{
     BGM bgm;
     SE se;
 
-    String titleBGM = "bgm\\yume.wav";
-    String settingBGM = "bgm\\houkagonoyuzora.wav";
-    String selectModeBGM = "bgm\\houkagonoyuzora.wav";
-    String levelSelectionBGM = "bgm\\houkagonoyuzora.wav";
-    String playGameBGM = "bgm\\houkagonoyuzora.wav";
-    String selectAIBGM = "bgm\\houkagonoyuzora.wav";
+    String titleBGM = "bgm\\title.wav";
+    String settingBGM = "bgm\\setting.wav";
+    String selectModeBGM = "bgm\\setting.wav";
+    String levelSelectionBGM = "bgm\\setting.wav";
+    String playGameBGM = "bgm\\game.wav";
+    String selectAIBGM = "bgm\\setting.wav";
 
-    String click = "se\\click.wav";
+    String click = "se\\othello.wav";
+    String putStone = "se\\button.wav";
 
     GameDisplay(){
         this.gameInfo = new GameInfo();
@@ -80,6 +81,10 @@ public class GameDisplay extends Display{
         }
         void click(){
             se.playSE(click);
+        }
+
+        void putStone(){
+            se.playSE(putStone);
         }
 
         void goScene(Display Scene){GameDisplay.current = Scene;}

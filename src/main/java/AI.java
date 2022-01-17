@@ -33,8 +33,8 @@ public class AI extends Thread{
     AI() throws IOException, InvalidKerasConfigurationException, UnsupportedKerasConfigurationException {
         System.out.println("AI_class start");
         // モデルの読み込み
-        this.PVModel = this.loadModel("model/model_policy_01.h5");
-        this.PModel = this.loadModel("model/model_sub_01.h5");
+        this.PVModel = this.loadModel("model/model_PV.h5");
+        this.PModel = this.loadModel("model/model_sub.h5");
 
         this.boardPred = new BoardPred();
         this.miniMax = new MiniMax();
@@ -95,7 +95,7 @@ public class AI extends Thread{
         }
         //PolicyValue-MCTS
         else if(predAIMode==3){
-            return new PolicyValueMCTS(this.PVModel,this.PModel, this.predBoard, this.predPlayer, 0, this.predNumber, this.maxTime).select();
+            return new PolicyValueMCTS(this.PVModel, this.predBoard, this.predPlayer, 0, 64, this.maxTime).select();//this.predNumber
         }
         else return null;
 
@@ -578,26 +578,30 @@ public class AI extends Thread{
 
     }
 
-    public static class PolicyValueMCTS{
+    public class PolicyValueMCTS{
         Othello o;
-        ComputationGraph PVModel, PModel;
+        ComputationGraph PVModel;
         double[][] board;
-        double[] Policy;
-        double maxTime, Value;
+        double[] Policy, scorePUCT;
+        double maxTime, Value, sumValue, temperature;
         int[][] places;
-        int player, passFlag, maxDepth;
+        int player, passFlag, maxDepth, visit;
+        boolean gameEnd;
         PolicyValueMCTS[] childTree;
 
-        PolicyValueMCTS(ComputationGraph PVModel,ComputationGraph PModel, double[][] board, int player, int passFlag, int maxDepth, double maxTime){
+        PolicyValueMCTS(ComputationGraph PVModel, double[][] board, int player, int passFlag, int maxDepth, double maxTime){
             this.o = new Othello();
             this.PVModel = PVModel;
-            this.PModel = PModel;
             this.board = this.o.boardCopy(board);
             this.player = player;
             this.passFlag = passFlag;
             this.maxDepth = maxDepth;
             this.maxTime = maxTime;
             this.places = this.o.putPlace(this.board, this.player);
+            this.sumValue = 0.0;
+            this.gameEnd = this.o.endDecision(board);
+            this.visit = 0;
+            this.temperature = 0.5;//温度パラメータ
 
             this.predBoard();
         }
@@ -620,8 +624,34 @@ public class AI extends Thread{
         //盤面の評価値作成
         void predBoard(){
             INDArray[] pred = this.PVModel.output(this.deformation(this.board));
-            this.Value = pred[0].toDoubleMatrix()[0][this.player - 1];
-            this.Policy = pred[1].toDoubleMatrix()[0];
+            if (this.player == 1){
+                this.Value = pred[1].toDoubleMatrix()[0][0];
+            }
+            else{
+                this.Value = 1 - pred[1].toDoubleMatrix()[0][0];
+            }
+            //System.out.println(pred[1].toDoubleMatrix()[0][0]);
+            //this.Policy = pred[0].toDoubleMatrix()[0];
+            if (this.places.length == 0){
+                this.Policy = new double[]{0};
+            }
+            else{
+                double[] temp = pred[0].toDoubleMatrix()[0];
+                double sum = 0;
+                this.Policy = new double[this.places.length];
+                for (int i=0;i<this.places.length;i++){
+                    this.Policy[i] = temp[this.places[i][0] + this.places[i][1] * this.o.board.length] / this.temperature;
+                }
+                double maxLogit = this.Policy[maxIndex(this.Policy)];
+                for (int i=0;i<this.places.length;i++){
+                    sum += Math.exp(this.Policy[i]-maxLogit);
+                    this.Policy[i] = Math.exp(this.Policy[i]-maxLogit);
+                }
+                for (int i=0;i<this.places.length;i++){
+                    this.Policy[i] /= sum;
+                }
+                //System.out.println(Arrays.toString(this.Policy));
+            }
         }
 
         //double配列の合計値
@@ -633,68 +663,186 @@ public class AI extends Thread{
             return sum;
         }
 
-        //ポリシーネットワークによる手の確率的選択
-        int[] selectPolicy(double[][] board, int player){
-            int[][] places = this.o.putPlace(board, player);
-            double[] policy = this.PModel.output(this.deformation(this.board))[0].toDoubleMatrix()[0];
-            double[] placesPolicy = new double[places.length];
-            for(int i = 0; i < places.length; i++){
-                int index = places[i][0] + places[i][0] * board.length;
-                placesPolicy[i] = policy[index];
+        //double配列の最大値index
+        int maxIndex(double[] list){
+            double max = 0;
+            int maxIndex = 0;
+            for (int i = 0; i < list.length; i++){
+                if (max<list[i]){
+                    max = list[i];
+                    maxIndex = i;
+                }
             }
-            double sum = sumDouble(placesPolicy);
-            for(int i = 0; i < places.length; i++){
-                placesPolicy[i] = placesPolicy[i] / sum;
+            return maxIndex;
+        }
+
+        //一番PUCTの高い枝を選ぶ
+        int selectPUCTIndex(){
+            int returnIndex = 0;
+            double bestScore = 0;
+            for (int i=0;i<childTree.length;i++){
+                if (bestScore < scorePUCT[i]){
+                    bestScore = scorePUCT[i];
+                    returnIndex = i;
+                }
             }
-            double rand = Math.random();
-            int selectIndex = -1;
-            while (rand>0){
-                selectIndex += 1;
-                rand -= placesPolicy[selectIndex];
-            }
-            return places[selectIndex];
+            return returnIndex;
         }
 
         //その地点からのゲームの結果をシミュレートして出力する
-        int getWinPlayer(){
-            int passFlag = this.passFlag;
-            int player = this.player;
-            double[][] board = this.o.boardCopy(this.board);
-            while (passFlag<2){
-                if(this.o.putPlace(board, player).length==0){
-                    passFlag+=1;
+        double updateSumValue(){
+            double returnValue = 0.0;
+            if (gameEnd){
+                int[] stone = this.o.result(this.board);
+                //黒の勝ち(Player1)
+                if (stone[0]>stone[1]){
+                    if (this.player == 1){
+                        returnValue += 1.0;
+                    }
+                    else{
+                        returnValue += 0.0;
+                    }
                 }
-                else {
-                    int[] place = selectPolicy(board, player);
-                    board = this.o.put(board, place, player);
+                //白の勝ち(Player2)
+                else if (stone[0]>stone[1]){
+                    if (this.player == 2){
+                        returnValue += 1.0;
+                    }
+                    else{
+                        returnValue += 0.0;
+                    }
                 }
-                player = player%2+1;
-            }
-            int[] stone = this.o.result(board);
-            if (stone[0]>stone[1]){
-                return 0;
-            }
-            else if (stone[0]<stone[1]){
-                return 1;
+                //引き分け(Draw)
+                else if (stone[0]>stone[1]){
+                    returnValue += 0.5;
+                }
             }
             else{
-                return 2;
+                /*
+                if (childTree == null) {
+                    this.makeChildTree();
+                }
+                for (int i=0;i<childTree.length;i++){
+                    returnValue += this.Policy[i] * (1 - this.childTree[i].Value);
+                    //System.out.println(this.childTree[i].Value);
+                }
+                */
+                returnValue = this.Value;
             }
+            this.sumValue += returnValue;
+            //System.out.println(this.sumValue/this.visit);
+            //System.out.println(returnValue);
+            return returnValue;
+        }
+
+        //勝率を取得
+        double getSumValue(){
+            return this.sumValue/this.visit;
+        }
+
+        //PUCTスコアの計算
+        double calcPUCT(PolicyValueMCTS child, int i){
+            double cPuct = 1.0;//uにかける定数
+            double u, q;
+            if (this.childTree.length < 2){
+                return 0;
+            }
+            else{
+                u = cPuct * this.Policy[i] * (Math.sqrt(this.visit)/(1 + child.visit));
+                if (child.visit == 0){
+                    q = 0.0;
+                }
+                else{
+                    q = 1 - child.getSumValue();
+                }
+            }
+            return q+u;
         }
 
         //木を先に掘っていく関数
         void makeChildTree(){
             if (this.places.length == 0){
                 this.childTree = new PolicyValueMCTS[1];
+                this.scorePUCT = new double[1];
+                this.childTree[0] = new PolicyValueMCTS(this.PVModel, this.board, this.player%2+1, this.passFlag + 1, this.maxDepth - 1, this.maxTime);
+                this.scorePUCT[0] = this.calcPUCT(this.childTree[0],0);
             }
             else{
                 this.childTree = new PolicyValueMCTS[this.places.length];
+                this.scorePUCT = new double[this.places.length];
+                for (int i=0;i<this.places.length;i++) {
+                    childTree[i] = new PolicyValueMCTS(this.PVModel, this.o.put(this.board, this.places[i], this.player), this.player % 2 + 1, 0, this.maxDepth - 1, this.maxTime);
+                    this.scorePUCT[i] = this.calcPUCT(this.childTree[i], i);
+                }
+            }
+        }
+
+        //プレイアウトをする
+        double playout(){
+            if (this.maxDepth == 0 || this.gameEnd){
+                this.visit += 1;//訪問数の更新
+                return 1 - updateSumValue();
+            }
+            else{
+                int threshold = 1000;//訪問数に応じて木を展開する。
+                if (this.visit > threshold){
+                    //System.out.println(this.visit);
+                    if (this.childTree == null){
+                        this.makeChildTree();
+                    }
+                    for (int i=0;i<this.childTree.length;i++){
+                        this.scorePUCT[i] = this.calcPUCT(this.childTree[i], i);
+                    }
+                    int index = selectPUCTIndex();
+                    double returnValue = this.childTree[index].playout();
+                    this.sumValue += returnValue;
+                    this.visit += 1;//訪問数の更新
+                    return 1 - returnValue;
+                }
+                else{
+                    this.visit += 1;//訪問数の更新
+                    return 1 - updateSumValue();
+                }
             }
         }
 
         //選択時に実行される関数
         int[] select(){
-            return new int[] {0,0};
+            if (this.places.length == 1){
+                return this.places[0];
+            }
+            else{
+                double startTime = System.currentTimeMillis();
+                int returnIndex = 0;
+                int bestVisit = 0;
+                this.makeChildTree();
+
+                while (System.currentTimeMillis() - startTime < this.maxTime && predStart){
+                    this.visit += 1;
+                    for (int i=0;i<this.places.length;i++){
+                        this.scorePUCT[i] = this.calcPUCT(this.childTree[i], i);
+                        //System.out.println(Arrays.toString(this.scorePUCT));
+                    }
+                    this.childTree[this.selectPUCTIndex()].playout();
+                }
+
+                for (int i=0;i<childTree.length;i++){
+                    if (bestVisit < childTree[i].visit){
+                        returnIndex = i;
+                        bestVisit = childTree[i].visit;
+                    }
+                }
+                System.out.println("予想勝率 : " + 100.0 * (1 - childTree[returnIndex].sumValue / childTree[returnIndex].visit));
+                System.out.println("訪問割合 : " + (double)childTree[returnIndex].visit/this.visit);
+                System.out.println("探索回数 : " + this.visit);
+                System.out.println("盤面勝率 : " + childTree[returnIndex].Value);
+                System.out.print("[");
+                for (int i=0;i<childTree.length;i++){
+                    System.out.print(childTree[i].visit + ", ");
+                }
+                System.out.print("]\n");
+                return this.places[returnIndex];
+            }
         }
 
     }

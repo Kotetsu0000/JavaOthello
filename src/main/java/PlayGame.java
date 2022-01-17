@@ -264,6 +264,7 @@ public class PlayGame extends Display{
                         gameInfo.predDisplay = gameInfo.cpu.boardPred.predict(gameInfo.othello.board);
                         gameInfo.cpu.AIPlace = null;
                         gameInfo.cpu.thinkFlag=true;
+                        this.gameInfo.putStone();
                     }
                     String str = "AI思考中";
                     ginfo.g.setFont(new Font("Sanserif", Font.BOLD, 20));
@@ -304,6 +305,7 @@ public class PlayGame extends Display{
                             gameInfo.othello.player += 1;
                             gameInfo.predDisplay = gameInfo.cpu.boardPred.predict(gameInfo.othello.board);
                             placeFlag = false;
+                            this.gameInfo.putStone();
                         }
                         //クリックした場所が置けない場合
                         else{
@@ -329,6 +331,7 @@ public class PlayGame extends Display{
                             gameInfo.othello.player += 1;
                             gameInfo.predDisplay = gameInfo.cpu.boardPred.predict(gameInfo.othello.board);
                             placeFlag = false;
+                            this.gameInfo.putStone();
                         }
                         //クリックした場所が置けない場合
                         else{
