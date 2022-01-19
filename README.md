@@ -3,7 +3,7 @@ JavaOthello
 
 An implementation of Reversi/Othello written in Java using marvin.
 
-The AI was created by loading a model from the Tensorflow Functional API with dl4j.
+The AI was created with the Tensorflow Functional API, and loaded by dl4j.
 
 Also, it is created by reinforcement learning through self-competition.
 
